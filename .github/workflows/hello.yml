@@ -4,32 +4,42 @@ on: [push]
 
 jobs:
   ubuntuPrintDate:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: echo the date
-      run: date
+      - uses: actions/checkout@v1
+      - name: echo the date
+        run: date
 
   windowsPrintDate:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: echo the date windows
-      run: Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-  
+      - uses: actions/checkout@v1
+      - name: echo the date windows
+        run: Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+
   macPrintDate:
     runs-on: macos-latest
     steps:
-    - uses: actions/checkout@v1
-    - name: echo the date macos
-      run: date
-  
+      - uses: actions/checkout@v1
+      - name: echo the date macos
+        run: date
+
   ubuntuAgainPrintDate:
-    runs-on: ubuntu-latest
     needs: [ubuntuPrintDate, windowsPrintDate, macPrintDate]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: echo the date a second time on ubuntu
         run: date
+
+  slackSend:
+    needs: [ubuntuPrintDate, windowsPrintDate, macPrintDate, ubuntuAgainPrintDate]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Notification to Slack
+        uses: slackapi/slack-github-action@v1.25.0
+        with:
+          channel-id: 'C06RNLGV90W'
+          slack-message: 'Some test message here.'
+        env:
+          SLACK_BOT_TOKEN: vqewniouheqwgneseqteng983425fdanv@$(*nfasofd
