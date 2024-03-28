@@ -25,7 +25,6 @@ jobs:
       - name: echo the date a second time on ubuntu
         run: date
   SlackMessage:
-    needs: [ubuntuAgainPrintDate] # Ensures this job runs after ubuntuAgainPrintDate
     runs-on: ubuntu-latest
     steps:
       - name: Send Message to Slack
