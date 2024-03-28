@@ -3,15 +3,31 @@ name: hello
 on: [push]
 
 jobs:
-  build:
+  ubuntuPrintDate:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+    - name: echo the date
+      run: date
+
+  windowsPrintDate:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: echo the date windows
+      run: Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+  
+  macPrintDate:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: echo the date macos
+      run: date
+  
+  ubuntuAgainPrintDate:
+    runs-on: ubuntu-latest
+    - uses: actions/checkout@v1
+    - name: echo the date a second time on ubuntu
+      run: date
