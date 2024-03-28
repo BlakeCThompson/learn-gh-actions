@@ -35,4 +35,4 @@ jobs:
           channel-id: 'C06RNLGV90W'
           slack-message: 'Some test message here.'
         env:
-          SLACK_BOT_TOKEN: asdffoqwopfeoipqwefoiqwopijfafqwer
+          SLACK_BOT_TOKEN: ${{ secrets.SLACK_BOT_TOKEN }}
