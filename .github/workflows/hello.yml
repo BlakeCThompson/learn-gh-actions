@@ -28,7 +28,7 @@ jobs:
   
   ubuntuAgainPrintDate:
     runs-on: ubuntu-latest
-      needs: [ubuntuPrintDate, windowsPrintDate, macPrintDate]
+    needs: [ubuntuPrintDate, windowsPrintDate, macPrintDate]
     - uses: actions/checkout@v1
     - name: echo the date a second time on ubuntu
       run: date
