@@ -25,11 +25,11 @@ jobs:
       - name: echo the date a second time on ubuntu
         run: date
   SlackMessage:
-    # You may pin to the exact commit or the version.
-    uses: devtk0582/slack-post-action@b9e9a7b9cb8f4cff41f6eacaf7b077f204e8a081
-    # uses: devtk0582/slack-post-action@v1.2
-    with:
-      # Slack Webhook Url
-      SLACK_WEBHOOK: https://hooks.slack.com/services/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
-      # Message to send
-      MESSAGE: {"something"}
+    needs: [ubuntuAgainPrintDate] # Ensures this job runs after ubuntuAgainPrintDate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Message to Slack
+        uses: devtk0582/slack-post-action@b9e9a7b9cb8f4cff41f6eacaf7b077f204e8a081
+        with:
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }} # Use secret for Slack webhook URL
+          MESSAGE: 'Some message here' # Adjust your message as needed
