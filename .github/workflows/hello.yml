@@ -10,13 +10,6 @@ jobs:
       - name: echo the date
         run: date
 
-  windowsPrintDate:
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v1
-      - name: echo the date windows
-        run: Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-
   macPrintDate:
     runs-on: macos-latest
     steps:
@@ -25,7 +18,7 @@ jobs:
         run: date
 
   ubuntuAgainPrintDate:
-    needs: [ubuntuPrintDate, windowsPrintDate, macPrintDate]
+    needs: [ubuntuPrintDate, macPrintDate]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
