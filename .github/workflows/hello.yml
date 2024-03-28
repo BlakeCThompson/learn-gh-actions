@@ -33,7 +33,7 @@ jobs:
         run: date
 
   slackSend:
-    needs: [ubuntuPrintDate, windowsPrintDate, macPrintDate, ubuntuAgainPrintDate]
+    needs: [ubuntuAgainPrintDate]
     runs-on: ubuntu-latest
     steps:
       - name: Send Notification to Slack
@@ -42,4 +42,4 @@ jobs:
           channel-id: 'C06RNLGV90W'
           slack-message: 'Some test message here.'
         env:
-          SLACK_BOT_TOKEN: vqewniouheqwgneseqteng983425fdanv@$(*nfasofd
+          SLACK_BOT_TOKEN: asdffoqwopfeoipqwefoiqwopijfafqwer
